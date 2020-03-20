@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 
 const product = (props) => {
     const{img,name,seller,price,stock,key}=props.product;
-    console.log(props);
+    //console.log(props);
     return (
         <div className="product">
             <div>

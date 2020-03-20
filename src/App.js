@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 
 import './App.css';
 import Header from './Components/Header';
@@ -13,42 +13,46 @@ import Review from './Components/Review';
 import Manage from './Components/Manage';
 import NotFound from './NotFound';
 import ProductDetail from './Components/ProductDetail';
+import Login from './Components/Login';
+import Auth, { AuthContext, AuthContextProvider } from './Components/useAuth';
 
 
-
-function App() {
-
+function App(props) {
+const user={name:'ant',email:'asd@ymail.com'}
   return (
    <div>
-    
-     <Header></Header>
-     <Router>
-       <Switch>
-         <Route path="/shop">
-         <Shop></Shop>
-         </Route>
-         <Route path="/review">
-          <Review></Review>
-         </Route>
-         <Route path="/manage">
-           <Manage></Manage>
-         </Route>
-         <Route exact path='/'>
-         <Shop></Shop>
-         </Route>
-         <Route path='/Product/:productKey'>
-           
-          <ProductDetail></ProductDetail>
-         </Route>
-         <Route path='*'>
-           <NotFound></NotFound>
-         </Route>
-         
+      <AuthContextProvider>
+      <Header></Header>
+      <Router>
+        <Switch>
+          <Route path="/shop">
+          <Shop></Shop>
+          </Route>
+          <Route path="/review">
+            <Review></Review>
+          </Route>
+          <Route path="/manage">
+            <Manage></Manage>
+          </Route>
+          <Route exact path='/'>
+          <Shop></Shop>
+          </Route>
+          <Route path="/login">
+            <Login></Login>
+          </Route>
+          <Route path='/Product/:productKey'>
+            
+            <ProductDetail></ProductDetail>
+          </Route>
+          <Route path='*'>
+            <NotFound></NotFound>
+          </Route>
+          
 
-       </Switch>
-     </Router>
-
-    
+        </Switch>
+      </Router>
+      
+      </AuthContextProvider>
    </div>
   );
 }
