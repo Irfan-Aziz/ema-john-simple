@@ -14,7 +14,8 @@ import Manage from './Components/Manage';
 import NotFound from './NotFound';
 import ProductDetail from './Components/ProductDetail';
 import Login from './Components/Login';
-import Auth, { AuthContext, AuthContextProvider } from './Components/useAuth';
+import  {  AuthContextProvider, PrivateRoute } from './Components/useAuth';
+import Shipment from './Components/Shipment';
 
 
 function App(props) {
@@ -40,6 +41,9 @@ const user={name:'ant',email:'asd@ymail.com'}
           <Route path="/login">
             <Login></Login>
           </Route>
+          <PrivateRoute path="/shipment">
+            <Shipment></Shipment>
+          </PrivateRoute>
           <Route path='/Product/:productKey'>
             
             <ProductDetail></ProductDetail>

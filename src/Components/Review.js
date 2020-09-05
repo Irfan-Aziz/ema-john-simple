@@ -6,10 +6,14 @@ import fakeData from '../fakeData';
 import ReviewDetail from './ReviewDetail';
 import Cart from './Cart';
 import happyImage from '../images/giphy.gif'
+import { Link } from 'react-router-dom';
+import { useAuth } from './useAuth';
+import { auth } from 'firebase';
 
 const Review = () => {
     const [cart,setCart]= useState([]);
     const [orderPlaced, setOrderPlaced]=useState(false);
+    const auth=useAuth();
 
     const handlePlaceOrder=()=>{
        // console.log('clicked');
@@ -52,10 +56,19 @@ const Review = () => {
           
             ></ReviewDetail>)}
             {thankYou}
+            {
+                !cart.length&& <h1>You have not added anything</h1>
+            }
       </div>
       <div className="cart-container">
           <Cart cart={cart}>
-              <button onClick={handlePlaceOrder} className="main-btn">Place Order</button>
+              <Link to="shipment">
+              { auth.user ?
+                  <button  className="main-btn">Proceed Checkout</button>
+                  :
+                  <button  className="main-btn">Log in to Order</button>
+                  }
+              </Link>
           </Cart>
       </div>
         </div>
